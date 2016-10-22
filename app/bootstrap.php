@@ -21,17 +21,23 @@ $container['db'] = function($container)
 
 $container['view'] = function($container)
 {
-    $view = new \Slim\Views\Twig(__DIR__ . '/../resources/views', [
+    $view = new Slim\Views\Twig(__DIR__ . '/../resources/views', [
         'cache' => false,
         'debug' => true
     ]);
 
     $view->addExtension(new Twig_Extension_Debug());
 
-    $view->addExtension(new \Slim\Views\TwigExtension(
+    $view->addExtension(new Slim\Views\TwigExtension(
         $container['router'],
         $container['request']->getUri()
     ));
+
+    $view->addExtension(
+        new App\TwigExtension(
+            $container['csrf']
+        )
+    );
 
     return $view;
 
@@ -61,11 +67,6 @@ $container['csrf'] = function($container)
 };
 
 $container['db']->bootEloquent();
-
-$app->add(new App\Middleware\CsrfViewMiddleware(
-    $container->view,
-    $container->csrf
-));
 
 $app->add($container->csrf);
 
