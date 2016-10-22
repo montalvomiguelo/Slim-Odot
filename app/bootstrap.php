@@ -1,5 +1,7 @@
 <?php
 
+ini_set('display_errors', true);
+
 session_start();
 
 require '../vendor/autoload.php';
@@ -59,6 +61,11 @@ $container['csrf'] = function($container)
 };
 
 $container['db']->bootEloquent();
+
+$app->add(new App\Middleware\CsrfViewMiddleware(
+    $container->view,
+    $container->csrf
+));
 
 $app->add($container->csrf);
 

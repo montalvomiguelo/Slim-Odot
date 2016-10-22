@@ -13,8 +13,7 @@
     {% endif %}
 
     <form class="form" action="{{ path_for('todo_lists.store') }}" method="POST">
-        <input type="hidden" name="csrf_name" value="{{ csrf.name }}">
-        <input type="hidden" name="csrf_value" value="{{ csrf.value }}">
+        {{ csrf.field | raw }}
         <fieldset class="form-group{% if messages %} form-error{% endif %}">
             <label for="title">Title</label>
             <input class="form-control" type="text" name="title" id="title">

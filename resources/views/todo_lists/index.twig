@@ -16,9 +16,8 @@
                     <td><a href="{{ path_for('todo_lists.edit', {id: todo_list.id}) }}">Edit</a></td>
                     <td>
                         <form action="{{ path_for('todo_lists.destroy', {id: todo_list.id}) }}" method="POST">
+                            {{ csrf.field | raw }}
                             <input type="hidden" name="_METHOD" value="DELETE"/>
-                            <input type="hidden" name="csrf_name" value="{{ csrf.name }}">
-                            <input type="hidden" name="csrf_value" value="{{ csrf.value }}">
                             <input class="btn btn-link" type="submit" value="Delete">
                         </form>
                     </td>

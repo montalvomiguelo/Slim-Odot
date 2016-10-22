@@ -29,10 +29,6 @@ class TodoListsController {
     {
         return $this->view->render($response, 'todo_lists/index.twig', [
             'todo_lists' => TodoList::all(),
-            'csrf' => [
-                'name' => $request->getAttribute('csrf_name'),
-                'value' => $request->getAttribute('csrf_value'),
-            ],
         ]);
     }
 
@@ -40,10 +36,6 @@ class TodoListsController {
     {
         return $this->view->render($response, 'todo_lists/create.twig', [
             'messages' => $this->flash->getMessages(),
-            'csrf' => [
-                'name' => $request->getAttribute('csrf_name'),
-                'value' => $request->getAttribute('csrf_value'),
-            ],
         ]);
     }
 
@@ -89,10 +81,6 @@ class TodoListsController {
         return $this->view->render($response, 'todo_lists/edit.twig', [
             'messages' => $this->flash->getMessages(),
             'todo_list' => $todoList,
-            'csrf' => [
-                'name' => $request->getAttribute('csrf_name'),
-                'value' => $request->getAttribute('csrf_value'),
-            ],
         ]);
 
     }
