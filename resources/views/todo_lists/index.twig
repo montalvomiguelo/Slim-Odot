@@ -17,6 +17,8 @@
                     <td>
                         <form action="{{ path_for('todo_lists.destroy', {id: todo_list.id}) }}" method="POST">
                             <input type="hidden" name="_METHOD" value="DELETE"/>
+                            <input type="hidden" name="csrf_name" value="{{ csrf.name }}">
+                            <input type="hidden" name="csrf_value" value="{{ csrf.value }}">
                             <input class="btn btn-link" type="submit" value="Delete">
                         </form>
                     </td>

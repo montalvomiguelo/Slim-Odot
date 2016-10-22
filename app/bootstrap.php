@@ -4,16 +4,18 @@ session_start();
 
 require '../vendor/autoload.php';
 
-$settings = require 'settings.php';
-
-$app = new Slim\App($settings);
-$capsule = new Illuminate\Database\Capsule\Manager;
+$app = new Slim\App(
+    require 'settings.php'
+);
 
 $container = $app->getContainer();
 
-$capsule->addConnection($container['settings']['db']);
-$capsule->setAsGlobal();
-$capsule->bootEloquent();
+$container['db'] = function($container)
+{
+    $capsule = new Illuminate\Database\Capsule\Manager;
+    $capsule->addConnection($container['settings']['db']);
+    return $capsule;
+};
 
 $container['view'] = function($container)
 {
@@ -50,5 +52,14 @@ $container['TodoItemsController'] = function($container)
 {
     return new App\Controllers\TodoItemsController;
 };
+
+$container['csrf'] = function($container)
+{
+    return new Slim\Csrf\Guard;
+};
+
+$container['db']->bootEloquent();
+
+$app->add($container->csrf);
 
 require 'routes.php';
