@@ -1,0 +1,24 @@
+.t-hackcss-navigation {
+    padding-right: 10px
+}
+
+.hack .t-hackcss-navigation-heading {
+    padding-top: 20px
+}
+
+.btn.btn-link {
+    background: none;
+    border: none;
+    box-shadow: none;
+    display: inline;
+    font: inherit;
+    padding: 0;
+    color: #ff2e88;
+    margin: 0;
+    border-bottom: 1px solid #ff2e88
+}
+
+.btn.btn-link:hover {
+    background-color: #ff2e88;
+    color: #fff
+}
