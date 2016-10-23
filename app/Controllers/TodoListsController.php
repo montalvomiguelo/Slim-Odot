@@ -34,9 +34,7 @@ class TodoListsController {
 
     public function create($request, $response, $args)
     {
-        return $this->view->render($response, 'todo_lists/create.twig', [
-            'messages' => $this->flash->getMessages(),
-        ]);
+        return $this->view->render($response, 'todo_lists/create.twig');
     }
 
     public function show($request, $response, $args)
@@ -60,7 +58,7 @@ class TodoListsController {
             $errors = $validator->errors();
 
             foreach ($errors as $label => $value) {
-                $this->flash->addMessage($label, $this->firstErrorFrom($value));
+                $this->flash->addMessage('error', $this->firstErrorFrom($value));
             }
 
             return $response->withRedirect($this->router->pathFor('todo_lists.create'));
@@ -69,6 +67,8 @@ class TodoListsController {
         $todoList->title = $data['title'];
 
         $todoList->save();
+
+        $this->flash->addMessage('success', 'Todo list was successfully created.');
 
         return $response->withRedirect($this->router->pathFor('todo_lists.index'));
 
@@ -79,7 +79,6 @@ class TodoListsController {
         $todoList = TodoList::findOrFail($args['id']);
 
         return $this->view->render($response, 'todo_lists/edit.twig', [
-            'messages' => $this->flash->getMessages(),
             'todo_list' => $todoList,
         ]);
 
@@ -98,7 +97,7 @@ class TodoListsController {
             $errors = $validator->errors();
 
             foreach ($errors as $label => $value) {
-                $this->flash->addMessage($label, $this->firstErrorFrom($value));
+                $this->flash->addMessage('error', $this->firstErrorFrom($value));
             }
 
             return $response->withRedirect($this->router->pathFor(
@@ -110,12 +109,16 @@ class TodoListsController {
 
         $todoList->save();
 
+        $this->flash->addMessage('success', 'Todo list was successfully updated.');
+
         return $response->withRedirect($this->router->pathFor('todo_lists.index'));
     }
 
     public function destroy($request, $response, $args)
     {
         TodoList::destroy($args['id']);
+
+        $this->flash->addMessage('success', 'Todo list was successfully destroyed.');
 
         return $response->withRedirect($this->router->pathFor('todo_lists.index'));
     }

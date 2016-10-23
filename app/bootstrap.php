@@ -35,7 +35,8 @@ $container['view'] = function($container)
 
     $view->addExtension(
         new App\TwigExtension(
-            $container['csrf']
+            $container['csrf'],
+            $container['flash']
         )
     );
 

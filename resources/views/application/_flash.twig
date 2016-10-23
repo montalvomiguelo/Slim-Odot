@@ -1,0 +1,15 @@
+{% set error = flash_messages('error') %}
+{% set info = flash_messages('info') %}
+{% set success = flash_messages('success') %}
+
+{% if error %}
+    <div class="alert alert-flash alert-error">{{ error | first }}</div>
+{% endif %}
+
+{% if info %}
+    <div class="alert alert-flash alert-error">{{ info | first }}</div>
+{% endif %}
+
+{% if success %}
+    <div class="alert alert-flash alert-success">{{ success | first }}</div>
+{% endif %}

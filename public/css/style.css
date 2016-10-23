@@ -22,3 +22,7 @@
     background-color: #ff2e88;
     color: #fff
 }
+
+.alert.alert-flash {
+    margin-top: 20px;
+}

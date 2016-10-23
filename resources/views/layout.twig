@@ -33,7 +33,10 @@
                     </nav>
                 </div>
             </aside>
-            <main class="cell -9of12">{% block content %}{% endblock %}</main>
+            <main class="cell -9of12">
+                {% include 'application/_flash.twig' %}
+                {% block content %}{% endblock %}
+            </main>
         </div>
     </div>
 </body>
