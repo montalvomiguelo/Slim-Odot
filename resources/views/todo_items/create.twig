@@ -2,9 +2,9 @@
 
 {% block content %}
 
-    <h1>Create Todo List</h1>
+    <h1>Add Todo Item</h1>
 
-    <form class="form" action="{{ path_for('todo_lists.store') }}" method="POST">
+    <form class="form" action="{{ path_for('todo_items.store', {todo_list_id: todo_list.id}) }}" method="POST">
         {{ csrf_field() }}
         <fieldset class="form-group{% if flash_messages('error') %} form-error{% endif %}">
             <label for="title">Title</label>
@@ -15,6 +15,6 @@
         <input type="submit" class="btn btn-primary btn-block">
     </form>
 
-    <p><a href="{{ path_for('todo_lists.index') }}">Back</a></p>
+    <p><a href="{{ path_for('todo_lists.show', {id: todo_list.id}) }}">Back</a></p>
 
 {% endblock %}

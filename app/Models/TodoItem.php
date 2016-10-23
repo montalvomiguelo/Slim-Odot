@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Valitron\Validator;
 
 class TodoItem extends Model
 {
@@ -12,6 +13,15 @@ class TodoItem extends Model
     public function todoList()
     {
         return $this->belongsTo('App\Models\TodoList');
+    }
+
+    public function validator($data)
+    {
+        $validator = new Validator($data);
+
+        $validator->rule('required', 'title');
+
+        return $validator;
     }
 
 }

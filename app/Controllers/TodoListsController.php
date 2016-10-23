@@ -58,7 +58,7 @@ class TodoListsController {
             $errors = $validator->errors();
 
             foreach ($errors as $label => $value) {
-                $this->flash->addMessage('error', $this->firstErrorFrom($value));
+                $this->flash->addMessage('error', array_shift($value));
             }
 
             return $response->withRedirect($this->router->pathFor('todo_lists.create'));
@@ -97,7 +97,7 @@ class TodoListsController {
             $errors = $validator->errors();
 
             foreach ($errors as $label => $value) {
-                $this->flash->addMessage('error', $this->firstErrorFrom($value));
+                $this->flash->addMessage('error', array_shift($value));
             }
 
             return $response->withRedirect($this->router->pathFor(
@@ -121,11 +121,6 @@ class TodoListsController {
         $this->flash->addMessage('success', 'Todo list was successfully destroyed.');
 
         return $response->withRedirect($this->router->pathFor('todo_lists.index'));
-    }
-
-    protected function firstErrorFrom($value)
-    {
-        return array_shift($value);
     }
 
 }

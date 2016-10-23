@@ -1,7 +1,5 @@
 <?php
 
-ini_set('display_errors', true);
-
 session_start();
 
 require '../vendor/autoload.php';
@@ -59,7 +57,11 @@ $container['TodoListsController'] = function($container)
 
 $container['TodoItemsController'] = function($container)
 {
-    return new App\Controllers\TodoItemsController;
+    return new App\Controllers\TodoItemsController(
+        $container->view,
+        $container->router,
+        $container->flash
+    );
 };
 
 $container['csrf'] = function($container)

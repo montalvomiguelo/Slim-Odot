@@ -21,12 +21,17 @@ $app->put('/todo_lists/{id:\d+}', 'TodoListsController:update')
 $app->delete('/todo_lists/{id:\d+}', 'TodoListsController:destroy')
     ->setName('todo_lists.destroy');
 
-$app->get('/todo_lists/{todo_list_id:\d+}/todo_items', 'TodoItemsController:index');
+$app->get('/todo_lists/{todo_list_id:\d+}/todo_items/create', 'TodoItemsController:create')
+    ->setName('todo_items.create');
 
-$app->post('/todo_lists/{todo_list_id:\d+}/todo_items', 'TodoItemsController:store');
+$app->post('/todo_lists/{todo_list_id:\d+}/todo_items', 'TodoItemsController:store')
+    ->setName('todo_items.store');
 
-$app->get('/todo_lists/{todo_list_id:\d+}/todo_items/{id:\d+}', 'TodoItemsController:show');
+$app->get('/todo_items/{id:\d+}/edit', 'TodoItemsController:edit')
+    ->setName('todo_items.edit');
 
-$app->put('/todo_lists/{todo_list_id:\d+}/todo_items/{id:\d+}', 'TodoItemsController:update');
+$app->put('/todo_items/{id:\d+}', 'TodoItemsController:update')
+    ->setName('todo_items.update');
 
-$app->delete('/todo_lists/{todo_list_id:\d+}/todo_items/{id:\d+}', 'TodoItemsController:destroy');
+$app->delete('/todo_items/{id:\d+}', 'TodoItemsController:destroy')
+    ->setName('todo_items.destroy');

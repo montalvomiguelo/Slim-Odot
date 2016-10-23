@@ -8,20 +8,24 @@
         <thead>
             <tr>
                 <th>Title</th>
-                <th colspan="2"></th>
+                <th colspan="3"></th>
             </tr>
         </thead>
         <tbody>
             {% for todo_item in todo_list.todoItems %}
                 <tr>
-                    <td><a href="#">{{ todo_item.title }}</a></td>
-                    <td>Complete</td>
-                    <td>Delete</td>
+                    <td>{{ todo_item.title }}</td>
+                    <td><a href="{{ path_for('todo_items.edit', {id: todo_item.id}) }}">Edit</a></td>
+                    <td>
+                        <form action="{{ path_for('todo_items.destroy', {id: todo_item.id}) }}" method="POST">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="_METHOD" value="DELETE"/>
+                            <input class="btn btn-link" type="submit" value="Delete">
+                        </form>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
-
-    <p><a href="{{ path_for('todo_lists.index') }}">Back</a></p>
 
 {% endblock %}

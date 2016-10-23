@@ -1,0 +1,18 @@
+    <div class="t-hackcss-navigation">
+        <h2 class="t-hackcss-navigation-heading">Odot</h2>
+        <nav class="menu">
+            <a class="menu-item" href="{{ path_for('todo_lists.index') }}">
+                Todo Lists <div class="pull-right">»</div>
+            </a>
+            {% if not todo_list %}
+            <a class="menu-item" href="{{ path_for('todo_lists.create') }}">
+                Create List <div class="pull-right">»</div>
+            </a>
+            {% endif %}
+            {% if todo_list %}
+            <a class="menu-item" href="{{ path_for('todo_items.create', {todo_list_id: todo_list.id}) }}">
+                Add a to-do <div class="pull-right">»</div>
+            </a>
+            {% endif %}
+        </nav>
+    </div>

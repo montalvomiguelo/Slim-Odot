@@ -14,24 +14,7 @@
     <div class="container">
         <div class="grid">
             <aside class="cell -3of12">
-                <div class="t-hackcss-navigation">
-                    <h2 class="t-hackcss-navigation-heading">Odot</h2>
-                    <nav class="menu">
-                        <a class="menu-item" href="#">
-                            Montalvo Miguelo <div class="pull-right">»</div>
-                        </a>
-                        {% if not todo_list %}
-                        <a class="menu-item" href="{{ path_for('todo_lists.create') }}">
-                            Create List <div class="pull-right">»</div>
-                        </a>
-                        {% endif %}
-                        {% if todo_list %}
-                        <a class="menu-item" href="#">
-                            Add a to-do <div class="pull-right">»</div>
-                        </a>
-                        {% endif %}
-                    </nav>
-                </div>
+                {% include 'application/_navigation.twig' %}
             </aside>
             <main class="cell -9of12">
                 {% include 'application/_flash.twig' %}
