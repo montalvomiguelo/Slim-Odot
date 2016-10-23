@@ -1,0 +1,27 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+
+    <h1>{{ todo_list.title }}</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th colspan="2"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for todo_item in todo_list.todoItems %}
+                <tr>
+                    <td><a href="#">{{ todo_item.title }}</a></td>
+                    <td>Complete</td>
+                    <td>Delete</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <p><a href="{{ path_for('todo_lists.index') }}">Back</a></p>
+
+{% endblock %}
